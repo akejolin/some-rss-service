@@ -6,14 +6,21 @@ const port = process.env.PORT || 8000
 const app = new koa()
 const router = new Router()
 
+const middlewares = require('./middlewares')
+const routes = require('./routes')
 
-const healthcheck = require('./middlewares/healthcheck')
+if (middlewares.length > 0) {
+  middlewares.forEach((middleware) => {
+    app.use(middleware)
+  })
+}
 
-router.get('/', (ctx) => {
-  ctx.body = 'hello world'
-})
+if (routes.length > 0) {
+  routes.forEach((route) => {
+    app.use(route.routes())
+  })
+}
 
-app.use(healthcheck)
 
 app.use(router.routes())
 
