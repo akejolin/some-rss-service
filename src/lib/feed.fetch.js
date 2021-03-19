@@ -2,9 +2,8 @@ const Parser = require('rss-parser')
 const get = require('lodash.get')
 const log = require('../utils/log')
 
-
 /**
-* Comment: I will not do checksum in this exercise. That's because I think it would
+* ToDo: I will not do checksum in this exercise. That's because I think it would
 * violate and put performance or memory at risk.
 * Suggestion: Let the feed be downloaded via startup and then also cron which would
 * download and create checksum of every downloaded file. Final result could be stored
