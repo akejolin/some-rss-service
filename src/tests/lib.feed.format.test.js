@@ -2,7 +2,6 @@ const feedFormat = require('../lib/feed.format')
 
 describe('feedFormat', () => {
 
-
   const feed = [
     {
       title: "Some title",
@@ -44,6 +43,5 @@ describe('feedFormat', () => {
       feedFormat({invalid: true})
     }).toThrow('Invalid feed param')
   })
-
-
+  
 })

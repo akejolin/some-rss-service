@@ -5,7 +5,6 @@ jest.mock('rss-parser')
 
 const feedFetch = require('../lib/feed.fetch')
 
-
 describe('feedFetch', () => {
 
   const url = 'https://some.rss.feed'

@@ -15,6 +15,12 @@ module.exports = (url, dataNeedle='items') => new Promise(async (resolve, reject
   * exists in the file and then attach the checksum to the final result.
   */
 
+  /**
+  * @desc Fetching a rss feed and parse it into js object.
+  * @param string $url - the url to fetch
+  * @return array - success or failure
+  */
+
  let parser = new Parser()
 
   try {

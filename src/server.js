@@ -1,3 +1,9 @@
+ /**
+  * @desc App server.
+  * @return server - for supertests
+  */
+
+
 const koa = require("koa")
 const Router = require("koa-router")
 
