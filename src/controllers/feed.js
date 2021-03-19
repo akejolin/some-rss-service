@@ -4,27 +4,50 @@ const isEmpty = require('lodash.isempty')
 const get = require('lodash.get')
 let parser = new Parser()
 
-module.exports = async (ctx) => {
+module.exports = async (ctx, next) => {
+
+
+  const url = get(ctx, 'request.query.url')
 
   // Param validation
-  if (!get(ctx, 'request.query.url')) {
+  if (!url) {
     ctx.status = 400
-    ctx.body='Bad request. Url param is missing.'
+    ctx.body={error: 'Bad request. Url param is missing.'}
     return
   }
-  if (isEmpty(get(ctx, 'request.query.url'))) {
+  if (isEmpty(url)) {
     ctx.status = 400
-    ctx.body='Bad request. Url param is empty.'
+    ctx.body={error: 'Bad request. Url param is empty.'}
     return
   }
   
   const protocolRegExp = /^(http|https):\/\//i
-  if (!protocolRegExp.test(get(ctx, 'request.query.url'))) {
+  if (!protocolRegExp.test(url)) {
     ctx.status = 400
-    ctx.body='Bad request. Url param is invalid.'
+    ctx.body={error: 'Bad request. Url param is invalid.'}
     return
   }
 
-  ctx.status = 200
-  ctx.body = 'feed controller says hi'
+
+  let result = []
+  try {
+
+    result = await parser.parseURL(url)
+
+    result = get(result, 'items', [])
+
+    const feed = result.map((item) => ({
+      title: item.title,
+      file: get(item, 'enclusure.url', ''),
+      checksum: 'abc'
+    }))
+    ctx.status = 200
+    ctx.body = {feed}
+
+  } catch(error) {
+    console.log({error})
+    ctx.status = 400
+    ctx.body = {error}
+  }
+
 }

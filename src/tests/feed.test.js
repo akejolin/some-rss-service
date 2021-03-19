@@ -45,6 +45,7 @@ describe('feed controller should respond with 400', () => {
 })
 
 describe('feed controller should respond with 200', () => {
+  jest.mock('rss-parser', () => jest.fn())
   it('when url param is existing', async () => {
     const mockCtx = {
       request: {

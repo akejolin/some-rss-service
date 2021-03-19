@@ -20,6 +20,7 @@
   "homepage": "https://github.com/akejolin/some-rss-service#readme",
   "dependencies": {
     "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
     "koa-router": "^10.0.0",
     "lodash.get": "^4.4.2",
     "lodash.isempty": "^4.4.0",
