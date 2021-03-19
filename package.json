@@ -2,7 +2,7 @@
   "name": "some-rss-service",
   "version": "1.0.0",
   "description": "some-rss-service",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
     "test": "jest",
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/akejolin/some-rss-service.git"
   },
-  "author": "",
+  "author": "akejolin@gmail.com",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/akejolin/some-rss-service/issues"
@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "eslint": "^7.22.0",
+    "eslint-plugin-jest": "^24.3.2",
     "jest": "^26.6.3"
   }
 }
