@@ -1,3 +1,7 @@
+/**
+* @desc Test feed formatter. The purpose with the formatter is to reduce the feed
+*/
+
 const feedFormat = require('../lib/feed.format')
 
 describe('feedFormat', () => {
@@ -43,5 +47,5 @@ describe('feedFormat', () => {
       feedFormat({invalid: true})
     }).toThrow('Invalid feed param')
   })
-  
+
 })

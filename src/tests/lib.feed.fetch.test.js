@@ -1,3 +1,6 @@
+/**
+* @desc Test rss fetch function.
+*/
 
 const Parser = require('rss-parser')
 
@@ -38,6 +41,7 @@ describe('feedFetch', () => {
     })
 
     const result = await feedFetch(url)
+    
     expect(Array.isArray(result)).toEqual(true)
     expect(result[0].title).toEqual('A new episode')
   })

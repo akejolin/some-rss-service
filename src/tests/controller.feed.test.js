@@ -1,3 +1,7 @@
+/**
+* @desc Test validation of parameter.
+*/
+
 const controller = require('../controllers/feed')
 
 describe('feed controller', () => {

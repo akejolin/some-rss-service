@@ -1,3 +1,7 @@
+/**
+* @desc Test that server can respond to health checks when healthy.
+*/
+
 const healthCheckMiddleware = require('../middlewares/healthcheck')
 
 describe('healthCheck', () => {

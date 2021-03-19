@@ -4,7 +4,7 @@ const log = require('../utils/log')
 
 /**
 * ToDo: I will not do checksum in this exercise. That's because I think it would
-* violate and put performance or memory at risk.
+* violate and put performance or memory at risk, if during rune time.
 * Suggestion: Let the feed be downloaded via startup and then also cron which would
 * download and create checksum of every downloaded file. Final result could be stored
 * in a list in a file on disk or db containing a blob of unique file hash and file path.
