@@ -1,6 +1,8 @@
 const koa = require("koa")
 const Router = require("koa-router")
 
+const isEmpty = require('lodash.isempty')
+
 const port = process.env.PORT || 8000
 
 const app = new koa()
@@ -9,13 +11,13 @@ const router = new Router()
 const middlewares = require('./middlewares')
 const routes = require('./routes')
 
-if (middlewares.length > 0) {
+if (!isEmpty(middlewares)) {
   middlewares.forEach((middleware) => {
     app.use(middleware)
   })
 }
 
-if (routes.length > 0) {
+if (!isEmpty(routes)) {
   routes.forEach((route) => {
     app.use(route.routes())
   })
