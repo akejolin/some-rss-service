@@ -7,10 +7,13 @@ const app = new koa()
 const router = new Router()
 
 
+const healthcheck = require('./middlewares/healthcheck')
+
 router.get('/', (ctx) => {
   ctx.body = 'hello world'
 })
 
+app.use(healthcheck)
 
 app.use(router.routes())
 
