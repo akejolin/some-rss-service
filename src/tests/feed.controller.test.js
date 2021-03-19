@@ -1,4 +1,4 @@
-const controller = require('../controllers/feed')
+const controller = require('../controllers/feed.controller')
 
 describe('feed controller should respond with 400', () => {
   it('when url param is missing', async () => {
@@ -38,24 +38,8 @@ describe('feed controller should respond with 400', () => {
         query: {url: 'some.rss.feed'}
       },
     }
-    await  controller(mockCtx, jest.fn())
+    await controller(mockCtx, jest.fn())
 
     expect(mockCtx.status).toEqual(400)
-  })
-})
-
-describe('feed controller should respond with 200', () => {
-  jest.mock('rss-parser', () => jest.fn())
-  it('when url param is existing', async () => {
-    const mockCtx = {
-      request: {
-        url: '/feed',
-        host: 'localhost',
-        query: {url: 'https://some.rss.feed'}
-      },
-    }
-    await  controller(mockCtx, jest.fn())
-
-    expect(mockCtx.status).toEqual(200)
   })
 })
