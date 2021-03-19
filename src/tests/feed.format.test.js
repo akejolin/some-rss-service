@@ -1,6 +1,6 @@
-const formatFeed = require('../controllers/formatFeed')
+const feedFormat = require('../lib/feed.format')
 
-describe('formatFeed', () => {
+describe('feedFormat', () => {
 
 
   const feed = [
@@ -29,7 +29,7 @@ describe('formatFeed', () => {
   ]
 
   it('should format results in a certain way', async() => {
-    result = formatFeed(feed)
+    result = feedFormat(feed)
     expect(result).toEqual([
       {
         title: "Some title",
@@ -41,7 +41,7 @@ describe('formatFeed', () => {
 
   it('should throw type error when input is not an array', async() => {
     expect(() => {
-      formatFeed({invalid: true})
+      feedFormat({invalid: true})
     }).toThrow('Invalid feed param')
   })
 

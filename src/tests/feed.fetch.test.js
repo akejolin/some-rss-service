@@ -3,10 +3,10 @@ const Parser = require('rss-parser')
 
 jest.mock('rss-parser')
 
-const getFeed = require('../controllers/getFeed')
+const feedFetch = require('../lib/feed.fetch')
 
 
-describe('getFeed', () => {
+describe('feedFetch', () => {
 
   const url = 'https://some.rss.feed'
 
@@ -15,7 +15,7 @@ describe('getFeed', () => {
   })
 
   it('should have been called once', async() => {
-    feed = await getFeed(url)
+    feed = await feedFetch(url)
     expect(Parser).toHaveBeenCalledTimes(1)
   })
 
@@ -38,7 +38,7 @@ describe('getFeed', () => {
       }
     })
 
-    const result = await getFeed(url)
+    const result = await feedFetch(url)
     expect(Array.isArray(result)).toEqual(true)
     expect(result[0].title).toEqual('A new episode')
   })

@@ -1,7 +1,7 @@
 const isEmpty = require('lodash.isempty')
 const get = require('lodash.get')
-const getFeed = require('./getFeed')
-const formatFeed = require('./formatFeed')
+const feedFetch = require('../lib/feed.fetch')
+const feedFormat = require('../lib/feed.format')
 
 module.exports = async (ctx, next) => {
 
@@ -27,8 +27,8 @@ module.exports = async (ctx, next) => {
 
   // Get feed and parse
   try {
-    let feed = await getFeed(url)
-    feed = formatFeed(feed)
+    let feed = await feedFetch(url)
+    feed = feedFormat(feed)
 
     ctx.status = 200
     ctx.body = feed
