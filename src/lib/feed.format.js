@@ -1,12 +1,12 @@
 const get = require('lodash.get')
 
-module.exports = (feed) => {
+/**
+* @desc Formatting and reducing the feed.
+* @param array $feed - the feed to format
+* @return array - success or failure
+*/
 
- /**
-  * @desc Formatting and reducing the feed.
-  * @param array $feed - the feed to format
-  * @return array - success or failure
-  */
+module.exports = (feed) => {
 
   if (!Array.isArray(feed)) {
     throw new TypeError('Invalid feed param')
