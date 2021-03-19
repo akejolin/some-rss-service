@@ -13,4 +13,6 @@ parserOptions:
   sourceType: module
 plugins:
   - jest
+rules:
+  no-async-promise-executor: off
 

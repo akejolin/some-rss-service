@@ -29,7 +29,7 @@ describe('feedFormat', () => {
   ]
 
   it('should format results in a certain way', async() => {
-    result = feedFormat(feed)
+    const result = feedFormat(feed)
     expect(result).toEqual([
       {
         title: "Some title",

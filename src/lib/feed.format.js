@@ -9,7 +9,6 @@ module.exports = (feed) => {
 
   if (!Array.isArray(feed)) {
     throw new TypeError('Invalid feed param')
-    return []
   }
 
  return feed.map((item) => ({

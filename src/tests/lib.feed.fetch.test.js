@@ -15,7 +15,7 @@ describe('feedFetch', () => {
   })
 
   it('should have been called once', async() => {
-    feed = await feedFetch(url)
+    await feedFetch(url)
     expect(Parser).toHaveBeenCalledTimes(1)
   })
 

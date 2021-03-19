@@ -3,7 +3,7 @@ const get = require('lodash.get')
 const feedFetch = require('../lib/feed.fetch')
 const feedFormat = require('../lib/feed.format')
 
-module.exports = async (ctx, next) => {
+module.exports = async (ctx) => {
 
   const url = get(ctx, 'request.query.url')
 

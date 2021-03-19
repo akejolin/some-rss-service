@@ -1,7 +1,7 @@
 const controller = require('../controllers/feed')
 
-describe('feed controller should respond with 400', () => {
-  it('when url param is missing', async () => {
+describe('feed controller', () => {
+  it('should respond with 400 when url param is missing', async () => {
     const mockCtx = {
       request: {
         url: '/feed',
@@ -12,10 +12,8 @@ describe('feed controller should respond with 400', () => {
 
     expect(mockCtx.status).toEqual(400)
   })
-})
 
-describe('feed controller should respond with 400', () => {
-  it('when url param is existing but empty', async () => {
+  it('should respond with 400 when url param is existing but empty', async () => {
     const mockCtx = {
       request: {
         url: '/feed',
@@ -27,10 +25,8 @@ describe('feed controller should respond with 400', () => {
 
     expect(mockCtx.status).toEqual(400)
   })
-})
 
-describe('feed controller should respond with 400', () => {
-  it('when url param is existing but invalid', async () => {
+  it('should respond with 400 when url param is existing but invalid', async () => {
     const mockCtx = {
       request: {
         url: '/feed',
