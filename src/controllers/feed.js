@@ -6,6 +6,7 @@ let parser = new Parser()
 
 module.exports = async (ctx) => {
 
+  // Param validation
   if (!get(ctx, 'request.query.url')) {
     ctx.status = 400
     ctx.body='Bad request. Url param is missing.'
@@ -14,6 +15,13 @@ module.exports = async (ctx) => {
   if (isEmpty(get(ctx, 'request.query.url'))) {
     ctx.status = 400
     ctx.body='Bad request. Url param is empty.'
+    return
+  }
+  
+  const protocolRegExp = /^(http|https):\/\//i
+  if (!protocolRegExp.test(get(ctx, 'request.query.url'))) {
+    ctx.status = 400
+    ctx.body='Bad request. Url param is invalid.'
     return
   }
 
