@@ -15,6 +15,6 @@ module.exports = (feed) => {
  return feed.map((item) => ({
    title: get(item, 'title'),
    checksum: 'abc',
-   file: get(item, 'enclosure.url'),
+   file: get(item, 'enclosure.url', ''),
  }))
 }
