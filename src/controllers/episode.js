@@ -4,8 +4,10 @@
 
 const isEmpty = require('lodash.isempty')
 const get = require('lodash.get')
-const episodeFetch = require('../lib/episode.fetch')
-const feedFormat = require('../lib/feed.format')
+const fileDownload = require('../lib/file.download-to-disk')
+const fileDelete = require('../lib/file.delete-from-disk')
+const fileInfo = require('../lib/file.get-info')
+const log = require('../utils/system.log')
 
 module.exports = async (ctx) => {
 
@@ -29,15 +31,40 @@ module.exports = async (ctx) => {
     return
   }
 
-  // Get feed and parse
-  try {
-    let feed = await episodeFetch(url)
-    //feed = feedFormat(feed)
+  
+  let fileObj = null
+  let errors = []
+  let info = null
 
-    ctx.status = 200
-    ctx.body = feed
+  // Download file
+  try {
+    fileObj = await fileDownload(url)
   } catch(error) {
-    ctx.status = error.code
-    ctx.body = {error}
+    log.log('download error', error)
+    errors.push(error)
+  }
+
+  // Get file info
+  try {
+    info = await fileInfo(fileObj.file)
+  } catch(error) {
+    log.log('file delete error', error)
+    errors.push(error)
+  }
+
+  // Delete file from disk
+  try {
+    const deletedFile = await fileDelete(fileObj.file)
+  } catch(error) {
+    log.log('file delete error', error)
+    errors.push(error)
+  }
+
+  if (isEmpty(errors)) {
+    ctx.status = 200
+    ctx.body = info
+  } else {
+    ctx.status = 502
+    ctx.body = errors
   }
 }
