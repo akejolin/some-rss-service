@@ -1,7 +1,7 @@
 # some-rss-service
 This api service will take a `rss-feed` url and fetch it, parse it and return the results into json format.
 
-# Getting started
+## Getting started
 
 ```
 npm i
