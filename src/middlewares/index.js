@@ -1,5 +1,5 @@
 const bodyParser = require('koa-bodyparser');
-const healthcheck = require('./healthcheck')
+const healthcheck = require('./system.healthcheck')
 
 /**
 * @desc Sets load order of server middlewares.
