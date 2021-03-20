@@ -1,6 +1,6 @@
 /**
-  * @desc Server healthcheck.
-  */
+* @desc Server healthcheck.
+*/
 
 const regExp = /healthcheck/i
 module.exports = async (ctx, next) => {

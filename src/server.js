@@ -1,7 +1,7 @@
- /**
-  * @desc App server.
-  * @return server - for supertests
-  */
+/**
+* @desc App server.
+* @return server - for supertests
+*/
 
 
 const koa = require("koa")

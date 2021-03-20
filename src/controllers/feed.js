@@ -1,3 +1,7 @@
+/**
+* @desc Will run fetch, rss parse and format feed before return
+*/
+
 const isEmpty = require('lodash.isempty')
 const get = require('lodash.get')
 const feedFetch = require('../lib/feed.fetch')
