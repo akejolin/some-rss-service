@@ -1,23 +1,33 @@
+/**
+* @desc Delete file on disk
+* @param string $file - full file path on disk,
+* @return void
+*/
+
 fs = require('fs')
 const shell = require('shelljs')
-const path = require('path')
 const log = require('../utils/system.log')
-
-const isEmpty = require('lodash.isempty')
 
 module.exports = (file) => new Promise(async (resolve, reject) => {
 
   if (!fs.existsSync(file)) {
-    reject({error:'file does not exist'})
+    reject({
+      code: 502,
+      message: 'File to delete does not exist',
+    })
   }
 
   fs.unlink(file, (error) => {
     if (error) {
       log.log('File delete says error: ', error)
-      reject({error})
+      reject({
+        code: res.status,
+        message: res.statusText,
+      })
       return
     }
-    resolve({response: `file ${file} is deleted`})
+    shell.rm('-fr', './tmp')
+    resolve()
   })
 })
 

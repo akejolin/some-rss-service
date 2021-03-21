@@ -1,30 +1,25 @@
+/**
+* @desc write a fetched file to disk.
+* @param object $fetchResponse - the response object from fetch,
+* @param string $url - the fetched url,
+* @return object - file object with
+*/
+
 fs = require('fs')
 const shell = require('shelljs')
 const path = require('path')
-const fetch = require('node-fetch')
 const log = require('../utils/system.log')
 const crypto = require('crypto')
-
-const isEmpty = require('lodash.isempty')
-
-
 const getFileExt = require('../utils/file.get-ext')
-module.exports = (url) => new Promise(async (resolve, reject) => {
-  console.log('delete started')
+module.exports = (fetchResponse, url) => new Promise(async (resolve, reject) => {
+
   const _diskPath = 'tmp'
   const diskPath = path.resolve('.', _diskPath)
   if (!fs.existsSync(diskPath)) {
     shell.mkdir('-p', diskPath)
   }
 
-  let res = null
-  try {
-    res = await fetch(url)
-  } catch(err){
-    log.log(err)
-    reject(err)
-    return
-  }
+  let res = fetchResponse
 
   const fileName = crypto.createHash('md5').update(url).digest("hex");
   const ext = getFileExt(url)
@@ -32,15 +27,16 @@ module.exports = (url) => new Promise(async (resolve, reject) => {
 
   const fileWriter = fs.createWriteStream(fullDiskPathToFile)
   fileWriter.on('finish', () => {
-    log.log(`download completed`)
     resolve({file: fullDiskPathToFile, url})
   })
   try {
     await res.body.pipe(fileWriter)
-    log.log(`download file: ${url}`)
   } catch(err) {
-    log.log(err)
-    reject(err)
+    log.log(`write file to disk error`, err)
+    reject({
+      code: 502,
+      message: err,
+    })
   }
 })
 

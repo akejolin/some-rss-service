@@ -12,7 +12,10 @@ module.exports = (file) => new Promise(async (resolve, reject) => {
     const metadata = await mm.parseFile(file);
     resolve(metadata)
   } catch (error) {
-    reject(error.message)
+    reject({
+      code: 500,
+      message: error,
+    })
   }
 })
 

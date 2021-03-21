@@ -4,7 +4,8 @@
 
 const isEmpty = require('lodash.isempty')
 const get = require('lodash.get')
-const fileDownload = require('../lib/file.download-to-disk')
+const fetch = require('../lib/fetch')
+const fileWrite = require('../lib/file.write-to-disk')
 const fileDelete = require('../lib/file.delete-from-disk')
 const fileInfo = require('../lib/file.get-info')
 const log = require('../utils/system.log')
@@ -33,15 +34,26 @@ module.exports = async (ctx) => {
 
   
   let fileObj = null
+  let fetchResponse = null
   let errors = []
   let info = null
 
   // Download file
   try {
-    fileObj = await fileDownload(url)
+    fetchResponse = await fetch(url)
   } catch(error) {
-    log.log('download error', error)
-    errors.push(error)
+    ctx.status = error.code
+    ctx.body = {error}
+    return
+  }
+
+  // Write to file on disk
+  try {
+    fileObj = await fileWrite(fetchResponse, url)
+  } catch(error) {
+    ctx.status = error.code
+    ctx.body = {error}
+    return
   }
 
   // Get file info
@@ -54,7 +66,7 @@ module.exports = async (ctx) => {
 
   // Delete file from disk
   try {
-    const deletedFile = await fileDelete(fileObj.file)
+    await fileDelete(fileObj.file)
   } catch(error) {
     log.log('file delete error', error)
     errors.push(error)
