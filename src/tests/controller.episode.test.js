@@ -1,5 +1,5 @@
 /**
-* @desc Test validation of parameter.
+* @desc Test validation of parameter, ensure correct REST response to user.
 */
 
 jest.mock('node-fetch', () => require('fetch-mock-jest').sandbox())
@@ -102,7 +102,7 @@ describe('episode controller', () => {
         body: jest.fn()
       }
     )
-    
+
     const mockCtx = {
       request: {
         url: '/episode',

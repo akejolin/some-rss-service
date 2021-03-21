@@ -2,6 +2,8 @@
 * @desc Test validation of parameter.
 */
 
+jest.mock('../lib/feed.fetch', () => () => Promise.reject({code: 404, message: 'not found'}))
+
 const controller = require('../controllers/feed')
 
 describe('feed controller', () => {
@@ -22,7 +24,7 @@ describe('feed controller', () => {
       request: {
         url: '/feed',
         host: 'localhost',
-        query: {url: ''}
+        query: { url: '' }
       },
     }
     await controller(mockCtx, jest.fn())
@@ -35,11 +37,26 @@ describe('feed controller', () => {
       request: {
         url: '/feed',
         host: 'localhost',
-        query: {url: 'some.rss.feed'}
+        query: { url: 'some.rss.feed' }
       },
     }
     await controller(mockCtx, jest.fn())
 
     expect(mockCtx.status).toEqual(400)
   })
+
+  it('should respond with 404 when rss-parser returns status 404', async () => {
+
+    const mockCtx = {
+      request: {
+        url: '/feed',
+        host: 'localhost',
+        query: { url: 'https://not.found.com' }
+      },
+    }
+    await controller(mockCtx, jest.fn())
+
+    expect(mockCtx.status).toEqual(404)
+  })
+
 })
