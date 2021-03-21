@@ -3,7 +3,6 @@
 * @return server - for supertests
 */
 
-
 const koa = require("koa")
 const Router = require("koa-router")
 
@@ -28,7 +27,6 @@ if (!isEmpty(routes)) {
     app.use(route.routes())
   })
 }
-
 
 app.use(router.routes())
 
