@@ -8,7 +8,7 @@ npm i
 npm run start
 ```
 
-# API endpoints
+## API endpoints
 
 These endpoints allow you to convert a rss-feed to json or extract info data of mp3 files.
 
