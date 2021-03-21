@@ -1,5 +1,5 @@
 # some-rss-service
-This api service will take a `rss-feed` url and fetch it, parse it and return the results into json format.
+This api service will take a `rss-feed` url and fetch it, parse it and return the results into json format. Also extract episode info via mp3 files
 
 ## Getting started
 
@@ -9,8 +9,6 @@ npm run start
 ```
 
 ## API endpoints
-
-These endpoints allow you to convert a rss-feed to json or extract info data of mp3 files.
 
 
 ### GET /feed
