@@ -21,7 +21,7 @@ describe('fetch client', () => {
     let res = null
     try {
       res = await fetchComponent('http://not-found.req')
-    } catch(e){
+    } catch(e) {
       res = e
     }
     expect(res.status).toBe(404)

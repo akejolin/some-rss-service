@@ -1,5 +1,5 @@
 /**
-* @desc Will run fetch, rss parse and format feed before return
+* @desc Get episode info within mp3 file
 */
 
 const isEmpty = require('lodash.isempty')
@@ -32,7 +32,11 @@ module.exports = async (ctx) => {
     return
   }
 
-  
+  /* Todo: Check for $url in previous downloads cache or record lists.
+   * if exist, then use that data and return it to user.
+   */
+
+
   let fileObj = null
   let fetchResponse = null
   let errors = []
@@ -46,6 +50,18 @@ module.exports = async (ctx) => {
     ctx.body = {error: {
       code: error.status,
       message: error.statusText,
+    }}
+    return
+  }
+
+  // Prevent and block invalid content types to proceed
+  const requestedFileType = fetchResponse.headers.get('content-type')
+
+  if (requestedFileType !== 'audio/mpeg') {
+    ctx.status = 401
+    ctx.body = {error: {
+      code: 401,
+      message: 'Requested file type not allowed',
     }}
     return
   }
@@ -67,7 +83,9 @@ module.exports = async (ctx) => {
     errors.push(error)
   }
 
-  // Delete file from disk
+  /* Todo: Save file info with hashed url to previous download records or cache. */
+
+  // Clean up and delete file from disk
   try {
     await fileDelete(fileObj.file)
   } catch(error) {
@@ -75,6 +93,7 @@ module.exports = async (ctx) => {
     errors.push(error)
   }
 
+  // Return result to user
   if (isEmpty(errors)) {
     ctx.status = 200
     ctx.body = info
