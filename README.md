@@ -20,7 +20,7 @@ Download and convert rss into json
 
 |          Name | Required |  Type   | Description                                                                                                                                                           |
 | -------------:|:--------:|:-------:| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|     `url` | required | string  | url to a mp3 file
+|     `url` | required | string  | Url to a rss feed to be converted
 
 Example: [http://localhost:8000/feed?url=https://rss.acast.com/varvet](http://localhost:8000/feed?url=https://rss.acast.com/varvet)
 
@@ -32,8 +32,8 @@ Extract info of mp3 file
 
 |          Name | Required |  Type   | Description                                                                                                                                                           |
 | -------------:|:--------:|:-------:| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|     `url` | required | string  | url to a rss feed to be converted
-
+|     `url` | required | string  | Url to a mp3 file
+ 
 
 
 Example: [http://localhost:8000/episode?url=https://sphinx.acast.com/varvet/kortversion-457-sabinaddumba/media.mp3](http://localhost:8000/episode?url=https://sphinx.acast.com/varvet/kortversion-457-sabinaddumba/media.mp3)
