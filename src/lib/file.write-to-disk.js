@@ -34,7 +34,7 @@ module.exports = (fetchResponse, url) => new Promise(async (resolve, reject) => 
   } catch(err) {
     log.log(`write file to disk error`, err)
     reject({
-      code: 502,
+      code: 500,
       message: err,
     })
   }

@@ -70,7 +70,7 @@ module.exports = async (ctx) => {
   try {
     fileObj = await fileWrite(fetchResponse, url)
   } catch(error) {
-    ctx.status = error.code
+    ctx.status = error.code || 500
     ctx.body = {error}
     return
   }
