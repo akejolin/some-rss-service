@@ -51,7 +51,7 @@ describe('episode controller', () => {
   })
 
 
-  it('should respond with 400 when url is pointing towards a none mp3 file', async () => {
+  it('should respond with 401 when url is pointing towards a none mp3 file', async () => {
 
    fetchMock.get(
       'https://incorrect.file/type.jpeg',
