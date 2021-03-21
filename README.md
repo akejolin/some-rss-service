@@ -120,3 +120,9 @@ Extract info of mp3 file
 
 Example: [http://localhost:8000/episode?url=https://sphinx.acast.com/varvet/kortversion-457-sabinaddumba/media.mp3](http://localhost:8000/episode?url=https://sphinx.acast.com/varvet/kortversion-457-sabinaddumba/media.mp3)
 
+## Run Tests
+
+```
+npm i
+npm run test
+```
