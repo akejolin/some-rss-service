@@ -20,7 +20,6 @@
   "homepage": "https://github.com/akejolin/some-rss-service#readme",
   "dependencies": {
     "crypto": "^1.0.1",
-    "jest-config": "^26.6.3",
     "koa": "^2.13.1",
     "koa-bodyparser": "^4.3.0",
     "koa-router": "^10.0.0",
