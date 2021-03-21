@@ -42,8 +42,11 @@ module.exports = async (ctx) => {
   try {
     fetchResponse = await fetch(url)
   } catch(error) {
-    ctx.status = error.code
-    ctx.body = {error}
+    ctx.status = error.status
+    ctx.body = {error: {
+      code: error.status,
+      message: error.statusText,
+    }}
     return
   }
 

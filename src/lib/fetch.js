@@ -6,16 +6,30 @@
 
 const fetch = require('node-fetch');
 
+/*
+
+module.exports = (url) =>
+  fetch(url)
+    .then(res => {
+      if (res.ok) {
+        return res
+      } else {
+        throw {code: res.status, message: res.statusText }
+      }
+    })
+    .catch(err => {
+      throw new Error(err)
+    })
+*/
+
+
 module.exports = (url) => new Promise((resolve, reject) => {
   fetch(url)
     .then(res => {
       if (res.ok) {
           return res
       } else {
-        reject({
-          code: res.status,
-          message: res.statusText,
-        })
+        reject(res)
       }
     })
     .then(res => {
