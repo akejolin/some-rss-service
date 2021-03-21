@@ -1,10 +1,4 @@
-fs = require('fs')
-const shell = require('shelljs')
-const path = require('path')
-const log = require('../utils/system.log')
 const mm = require('music-metadata')
-
-const isEmpty = require('lodash.isempty')
 
 module.exports = (file) => new Promise(async (resolve, reject) => {
 

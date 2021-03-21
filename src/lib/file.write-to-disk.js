@@ -5,7 +5,7 @@
 * @return object - file object with
 */
 
-fs = require('fs')
+const fs = require('fs')
 const shell = require('shelljs')
 const path = require('path')
 const log = require('../utils/system.log')

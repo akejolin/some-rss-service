@@ -4,7 +4,7 @@
 * @return void
 */
 
-fs = require('fs')
+const fs = require('fs')
 const shell = require('shelljs')
 const log = require('../utils/system.log')
 
@@ -19,10 +19,10 @@ module.exports = (file) => new Promise(async (resolve, reject) => {
 
   fs.unlink(file, (error) => {
     if (error) {
-      log.log('File delete says error: ', error)
+      log.error(error)
       reject({
-        code: res.status,
-        message: res.statusText,
+        code: 500,
+        message: 'file delete error',
       })
       return
     }
