@@ -58,9 +58,9 @@ module.exports = async (ctx) => {
   const requestedFileType = fetchResponse.headers.get('content-type')
 
   if (requestedFileType !== 'audio/mpeg') {
-    ctx.status = 401
+    ctx.status = 403
     ctx.body = {error: {
-      code: 401,
+      code: 403,
       message: 'Requested file type not allowed',
     }}
     return

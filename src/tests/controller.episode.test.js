@@ -51,7 +51,7 @@ describe('episode controller', () => {
   })
 
 
-  it('should respond with 401 when url is pointing towards a none mp3 file', async () => {
+  it('should respond with 403 when url is pointing towards a none mp3 file', async () => {
 
    fetchMock.get(
       'https://incorrect.file/type.jpeg',
@@ -69,7 +69,7 @@ describe('episode controller', () => {
     }
     await controller(mockCtx, jest.fn())
 
-    expect(mockCtx.status).toEqual(401)
+    expect(mockCtx.status).toEqual(403)
   })
 
   it('should respond with 404 when file fetch is responding with status 404, not found', async () => {
