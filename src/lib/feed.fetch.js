@@ -1,6 +1,6 @@
 const Parser = require('rss-parser')
 const get = require('lodash.get')
-const log = require('../utils/log')
+const log = require('../utils/system.log')
 
 /**
 * ToDo: I will not do checksum in this exercise. That's because I think it would

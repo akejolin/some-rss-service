@@ -8,9 +8,34 @@ npm i
 npm run start
 ```
 
-Browser to [http://localhost:8000/feed?url=https://rss.acast.com/varvet](http://localhost:8000/feed?url=https://rss.acast.com/varvet) and view the result or:
+# API endpoints
 
-```
-curl http://localhost:8000/feed?url=https://rss.acast.com/varvet
-```
+These endpoints allow you to convert a rss-feed to json or extract info data of mp3 files.
+
+
+### GET /feed
+Download and convert rss into json
+
+**Parameters**
+
+|          Name | Required |  Type   | Description                                                                                                                                                           |
+| -------------:|:--------:|:-------:| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|     `url` | required | string  | url to a mp3 file
+
+Example: [http://localhost:8000/feed?url=https://rss.acast.com/varvet](http://localhost:8000/feed?url=https://rss.acast.com/varvet)
+
+
+### GET /episode
+Extract info of mp3 file
+
+**Parameters**
+
+|          Name | Required |  Type   | Description                                                                                                                                                           |
+| -------------:|:--------:|:-------:| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|     `url` | required | string  | url to a rss feed to be converted
+
+
+
+Example: [http://localhost:8000/episode?url=https://sphinx.acast.com/varvet/kortversion-457-sabinaddumba/media.mp3](http://localhost:8000/episode?url=https://sphinx.acast.com/varvet/kortversion-457-sabinaddumba/media.mp3)
+
 
