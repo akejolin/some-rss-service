@@ -1,0 +1,13 @@
+/**
+* @desc Sets load order of cron jobs.
+* @return array
+*/
+const CronJob = require('cron').CronJob
+
+const getEpisodeFiles = require('./get-episode-files')
+
+
+
+module.exports = [
+  new CronJob('*/1 * * * *', getEpisodeFiles, null, true, 'Europe/Stockholm', null, true)
+]

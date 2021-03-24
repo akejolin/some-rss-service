@@ -11,6 +11,7 @@ const port = process.env.PORT || 8000
 
 const app = new koa()
 
+const cronJobs = require('./cron')
 const middlewares = require('./middlewares')
 const routes = require('./routes')
 
@@ -29,6 +30,13 @@ if (!isEmpty(routes)) {
 const server = app.listen(port, () => {
   console.info(`Listening on port ${port}`)
 })
+
+if (!isEmpty(cronJobs)) {
+  cronJobs.forEach((cronjob) => {
+    cronjob.start()
+  })
+}
+
 
 module.exports = server
 
