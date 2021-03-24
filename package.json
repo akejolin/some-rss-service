@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/akejolin/some-rss-service#readme",
   "dependencies": {
+    "cron": "^1.8.2",
     "crypto": "^1.0.1",
     "koa": "^2.13.1",
     "koa-bodyparser": "^4.3.0",
