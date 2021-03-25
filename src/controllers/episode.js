@@ -16,19 +16,16 @@ module.exports = async (ctx) => {
 
   // Param validation
   if (!url) {
-    ctx.status = 400
-    ctx.body={error: 'Bad request. Url param is missing.'}
+    ctx.respondToClient(ctx, 400, 'Bad request. Url param is missing.')
     return
   }
   if (isEmpty(url)) {
-    ctx.status = 400
-    ctx.body={error: 'Bad request. Url param is empty.'}
+    ctx.respondToClient(ctx, 400, 'Bad request. Url param is empty.')
     return
   }
   const protocolRegExp = /^(http|https):\/\//i
   if (!protocolRegExp.test(url)) {
-    ctx.status = 400
-    ctx.body={error: 'Bad request. Url param is invalid.'}
+    ctx.respondToClient(ctx, 400, 'Bad request. Url param is invalid.')
     return
   }
 
@@ -46,11 +43,7 @@ module.exports = async (ctx) => {
   try {
     fetchResponse = await fetch(url)
   } catch(error) {
-    ctx.status = error.status
-    ctx.body = {error: {
-      code: error.status,
-      message: error.statusText,
-    }}
+    ctx.respondToClient(ctx, error.status, error.statusText)
     return
   }
 
@@ -58,11 +51,7 @@ module.exports = async (ctx) => {
   const requestedFileType = fetchResponse.headers.get('content-type')
 
   if (requestedFileType !== 'audio/mpeg') {
-    ctx.status = 403
-    ctx.body = {error: {
-      code: 403,
-      message: 'Requested file type not allowed',
-    }}
+    ctx.respondToClient(ctx, 403, 'Requested file type not allowed')
     return
   }
 
@@ -70,8 +59,7 @@ module.exports = async (ctx) => {
   try {
     fileObj = await fileWrite(fetchResponse, url)
   } catch(error) {
-    ctx.status = error.code || 500
-    ctx.body = {error}
+    ctx.respondToClient(ctx, error.code || 500, error)
     return
   }
 
@@ -95,10 +83,8 @@ module.exports = async (ctx) => {
 
   // Return result to user
   if (isEmpty(errors)) {
-    ctx.status = 200
-    ctx.body = info
+    ctx.respondToClient(ctx, 200, info)
   } else {
-    ctx.status = 502
-    ctx.body = errors
+    ctx.respondToClient(ctx, 500, errors)
   }
 }

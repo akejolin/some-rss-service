@@ -5,10 +5,12 @@
 jest.mock('../lib/feed.fetch', () => () => Promise.reject({code: 404, message: 'not found'}))
 
 const controller = require('../controllers/feed')
+const respondToClient = require('../utils/respond-to-client')
 
 describe('feed controller', () => {
   it('should respond with 400 when url param is missing', async () => {
     const mockCtx = {
+      respondToClient,
       request: {
         url: '/feed',
         host: 'localhost',
@@ -21,6 +23,7 @@ describe('feed controller', () => {
 
   it('should respond with 400 when url param is existing but empty', async () => {
     const mockCtx = {
+      respondToClient,
       request: {
         url: '/feed',
         host: 'localhost',
@@ -34,6 +37,7 @@ describe('feed controller', () => {
 
   it('should respond with 400 when url param is existing but invalid', async () => {
     const mockCtx = {
+      respondToClient,
       request: {
         url: '/feed',
         host: 'localhost',
@@ -48,6 +52,7 @@ describe('feed controller', () => {
   it('should respond with 404 when rss-parser returns status 404', async () => {
 
     const mockCtx = {
+      respondToClient,
       request: {
         url: '/feed',
         host: 'localhost',

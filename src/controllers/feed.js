@@ -14,19 +14,16 @@ module.exports = async (ctx) => {
 
   // Param validation
   if (!url) {
-    ctx.status = 400
-    ctx.body={error: 'Bad request. Url param is missing.'}
+    ctx.respondToClient(ctx, 400, 'Bad request. Url param is missing.')
     return
   }
   if (isEmpty(url)) {
-    ctx.status = 400
-    ctx.body={error: 'Bad request. Url param is empty.'}
+    ctx.respondToClient(ctx, 400, 'Bad request. Url param is empty.')
     return
   }
   const protocolRegExp = /^(http|https):\/\//i
   if (!protocolRegExp.test(url)) {
-    ctx.status = 400
-    ctx.body={error: 'Bad request. Url param is invalid.'}
+    ctx.respondToClient(ctx, 400, 'Bad request. Url param is invalid.')
     return
   }
 
@@ -36,11 +33,8 @@ module.exports = async (ctx) => {
   try {
     let feed = await feedFetch(url)
     feed = feedFormat(feed, checksumCache)
-
-    ctx.status = 200
-    ctx.body = feed
+    ctx.respondToClient(ctx, feed)
   } catch(error) {
-    ctx.status = error.code
-    ctx.body = {error}
+    ctx.respondToClient(ctx, error.code, error)
   }
 }

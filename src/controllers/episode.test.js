@@ -10,10 +10,12 @@ jest.mock('../lib/file.delete-from-disk', () => () => Promise.reject({ data: {} 
 jest.mock('../lib/file.get-info', () => () => Promise.reject({ data: {} }))
 
 const controller = require('../controllers/episode')
+const respondToClient = require('../utils/respond-to-client')
 
 describe('episode controller', () => {
   it('should respond with 400 when url param is missing', async () => {
     const mockCtx = {
+      respondToClient,
       request: {
         url: '/episode',
         host: 'localhost',
@@ -26,6 +28,7 @@ describe('episode controller', () => {
 
   it('should respond with 400 when url param is existing but empty', async () => {
     const mockCtx = {
+      respondToClient,
       request: {
         url: '/episode',
         host: 'localhost',
@@ -39,6 +42,7 @@ describe('episode controller', () => {
 
   it('should respond with 400 when url param is existing but invalid', async () => {
     const mockCtx = {
+      respondToClient,
       request: {
         url: '/episode',
         host: 'localhost',
@@ -61,6 +65,7 @@ describe('episode controller', () => {
       }
     )
     const mockCtx = {
+      respondToClient,
       request: {
         url: '/episode',
         host: 'localhost',
@@ -81,6 +86,7 @@ describe('episode controller', () => {
       }
     )
     const mockCtx = {
+      respondToClient,
       request: {
         url: '/episode',
         host: 'localhost',
@@ -104,6 +110,7 @@ describe('episode controller', () => {
     )
 
     const mockCtx = {
+      respondToClient,
       request: {
         url: '/episode',
         host: 'localhost',

@@ -15,6 +15,10 @@ const app = new koa()
 
 const middlewares = require('./middlewares')
 const routes = require('./routes')
+const respondToClient = require('./utils/respond-to-client')
+
+app.context.respondToClient = respondToClient
+
 
 if (!isEmpty(middlewares)) {
   middlewares.forEach((middleware) => {
