@@ -2,11 +2,14 @@
 
 const request = require('supertest')
 
+jest.mock('../lib/checksum/load-cache', () => () => ([]))
+jest.mock('../lib/feed.fetch', () => () => ([]))
+
 describe('server', () => {
   let server = null
 
   beforeEach(() => {
-    server = require('../server')
+    server = require('../server.api')
   })
 
   afterEach(() => {

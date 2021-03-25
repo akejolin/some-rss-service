@@ -37,7 +37,25 @@ describe('feedFormat', () => {
       {
         title: "Some title",
         file: "https://some.url.to/media.mp3",
-        checksum: 'abc'
+        checksum: 'not available'
+      }
+    ])
+  })
+
+  it('should find a checksum if url was match in cache', async() => {
+    const cache = [
+      {
+        checksum: "abc-acb-acb-acb-",
+        url:"67336d38e70720322da9762466b482ab",
+        date:"Wed, 24 Mar 2021 13:56:43 GMT"
+      }
+    ]
+    const result = feedFormat(feed, cache)
+    expect(result).toEqual([
+      {
+        title: "Some title",
+        file: "https://some.url.to/media.mp3",
+        checksum: 'abc-acb-acb-acb-'
       }
     ])
   })
