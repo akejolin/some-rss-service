@@ -17,7 +17,6 @@ describe('isOutOfDate', () => {
 
   it('should return true when checksum cache date is out of date', async() => {
     try {
-      
       const cacheIsOutOfDate = await isOutOfDate(
         'https://some.url.to/media.mp3',
         'Thu, 25 Mar 2021 13:56:43 GMT',
