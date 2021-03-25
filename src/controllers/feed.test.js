@@ -54,7 +54,12 @@ describe('feed controller', () => {
         query: { url: 'https://not.found.com' }
       },
     }
-    await controller(mockCtx, jest.fn())
+    try {
+      await controller(mockCtx, jest.fn())
+    } catch(error) {
+      console.log(error)
+    }
+    
 
     expect(mockCtx.status).toEqual(404)
   })
