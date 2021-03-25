@@ -14,7 +14,7 @@ module.exports = (url, date, cache) => new Promise(async (resolve, reject) => {
     cache.find(haystack => haystack.url === needle)
   const hashedUrl = crypto.createHash('md5').update(url).digest("hex")
   const cachedChecksum = getChecksum(hashedUrl, cache)
-  console.log()
+
   if (!cachedChecksum) {
     reject(true)
     return

@@ -14,7 +14,6 @@ describe('isOutOfDate', () => {
     }
   ]
 
-
   it('should return true when checksum cache date is out of date', async() => {
     try {
       const cacheIsOutOfDate = await isOutOfDate(

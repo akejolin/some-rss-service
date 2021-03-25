@@ -1,5 +1,5 @@
 /**
-* @desc Delete file on disk
+* @desc Delete file on disk - during endpoint runtime
 * @param string $file - full file path on disk,
 * @return void
 */
@@ -11,9 +11,10 @@ module.exports = (file) => new Promise(async (resolve, reject) => {
 
   if (!fs.existsSync(file)) {
     reject({
-      code: 502,
+      code: 500,
       message: 'File to delete does not exist',
     })
+    return
   }
 
   fs.unlink(file, (error) => {
@@ -26,7 +27,7 @@ module.exports = (file) => new Promise(async (resolve, reject) => {
       return
     }
     
-    resolve()
+    resolve('file successfully deleted')
   })
 })
 
