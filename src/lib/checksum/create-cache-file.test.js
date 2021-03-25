@@ -5,9 +5,9 @@ const shell = require('shelljs')
 const path = require('path')
 const createCacheFile = require('./create-cache-file')
 
-createCacheFile('mock', 'test-cache-file.json', {hello: 'world!'})
+createCacheFile('mock-cache', 'test-cache-file.json', {hello: 'world!'})
 
-const diskPath = path.resolve('.', 'mock')
+const diskPath = path.resolve('.', 'mock-cache')
 
 describe('createCacheFile', () => {
   it('should extract an extension of an string url', async () => {

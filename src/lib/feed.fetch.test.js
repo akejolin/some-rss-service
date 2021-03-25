@@ -6,7 +6,7 @@ const Parser = require('rss-parser')
 
 jest.mock('rss-parser')
 
-const feedFetch = require('../../lib/feed.fetch')
+const feedFetch = require('../lib/feed.fetch')
 
 describe('feedFetch', () => {
 

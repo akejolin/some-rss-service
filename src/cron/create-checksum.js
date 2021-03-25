@@ -88,7 +88,7 @@ module.exports = (url) => new Promise(async (resolve, reject) => {
   // Create checksum
   let checksum = null
   try {
-    checksum = await generateCkeckSum(fileObj, url)
+    checksum = await generateCkeckSum(fileObj)
     checksumRecord.push(checksum)
   } catch(error) {
     throw new Error(`${error}`)

@@ -8,7 +8,6 @@ const shell = require('shelljs')
 
 const log = require('../utils/system.log')
 const feedFetch = require('../lib/feed.fetch')
-const feedFormat = require('../lib/feed.format')
 const startCreateCheckSumProgress = require('../cron/create-checksum')
 
 module.exports = async () => {
