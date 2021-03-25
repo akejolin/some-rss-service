@@ -3,6 +3,7 @@
 */
 const shell = require('shelljs')
 const path = require('path')
+const fs = require('fs')
 const createCacheFile = require('./create-cache-file')
 
 createCacheFile('mock-cache', 'test-cache-file.json', {hello: 'world!'})

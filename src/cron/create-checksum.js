@@ -96,7 +96,7 @@ module.exports = (url) => new Promise(async (resolve, reject) => {
 
   // Save checksum to file list
   try {
-    const res = saveCheckSum(checksum, fetchResponse.date)
+    saveCheckSum(checksum, fetchResponse.date)
   } catch(error) {
     throw new Error(`${error}`)
   }

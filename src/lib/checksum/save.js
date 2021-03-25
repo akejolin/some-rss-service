@@ -6,7 +6,7 @@
 * @return void
 */
 
-fs = require('fs')
+
 const path = require('path')
 const crypto = require('crypto')
 

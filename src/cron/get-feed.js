@@ -4,7 +4,6 @@
 */
 
 const get = require('lodash.get')
-const shell = require('shelljs')
 
 const log = require('../utils/system.log')
 const feedFetch = require('../lib/feed.fetch')
@@ -41,7 +40,7 @@ module.exports = async () => {
     }, delay)
   })
 
-  const result = await feed.reduce((accumulate, nextID) => {
+  await feed.reduce((accumulate, nextID) => {
     return accumulate.then(() => action(nextID))
   }, Promise.resolve())
 

@@ -5,7 +5,7 @@
 
 const koa = require("koa")
 
-const shell = require('shelljs')
+
 const isEmpty = require('lodash.isempty')
 
 

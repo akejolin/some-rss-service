@@ -4,7 +4,7 @@
 * @return void
 */
 
-fs = require('fs')
+const fs = require('fs')
 
 module.exports = (file, data) => fs.writeFile(file, data, (err) => {
   if (err) {
