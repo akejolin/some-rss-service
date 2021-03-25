@@ -1,6 +1,7 @@
 /**
 * @desc Formatting and reducing the feed.
 * @param array $feed - the feed to format
+* @param array $cache - cached checksum objects
 * @return array - success or failure
 */
 

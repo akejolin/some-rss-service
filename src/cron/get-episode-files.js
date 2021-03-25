@@ -63,6 +63,7 @@ module.exports = async () => {
   const action = (item) => new Promise((resolve, reject) => {
 
     // Slow down the loop process to not overload memory
+    const delay = 0
     setTimeout(async () => {
       try {
         const res = await startCreateCheckSumProgress(item.file)
@@ -70,7 +71,7 @@ module.exports = async () => {
       } catch(error) {
         reject()
       }
-    }, 300)
+    }, delay)
   })
 
   const result = await feed.reduce((accumulate, nextID) => {

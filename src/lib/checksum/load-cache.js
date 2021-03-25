@@ -9,9 +9,9 @@ module.exports = async () => new Promise(async (resolve, reject) => {
   const filePath = `${diskPath}/checksum-file-cache.json`
   let list = []
   try {
-  const data = await fileRead(filePath)
-  list = JSON.parse(data)
-  resolve(list)
+    const data = await fileRead(filePath)
+    list = JSON.parse(data)
+    resolve(list)
   } catch(error) {
     reject(error)
   }
