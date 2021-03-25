@@ -1,5 +1,7 @@
 # Logs
 tmp
+cache
+mock
 logs
 *.log
 npm-debug.log*
