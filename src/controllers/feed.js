@@ -5,6 +5,7 @@
 const isEmpty = require('lodash.isempty')
 const get = require('lodash.get')
 const feedFetch = require('../lib/feed.fetch')
+const loadChecksumCache = require('../lib/checksum/load-cache')
 const feedFormat = require('../lib/feed.format')
 
 module.exports = async (ctx) => {
@@ -29,14 +30,17 @@ module.exports = async (ctx) => {
     return
   }
 
+  const checksumCache = await loadChecksumCache()
+
   // Get feed and parse
   try {
     let feed = await feedFetch(url)
-    feed = feedFormat(feed)
+    feed = feedFormat(feed, checksumCache)
 
     ctx.status = 200
     ctx.body = feed
   } catch(error) {
+    console.log(error)
     ctx.status = error.code
     ctx.body = {error}
   }

@@ -11,9 +11,7 @@ const path = require('path')
 const log = require('../utils/system.log')
 const crypto = require('crypto')
 const getFileExt = require('../utils/file.get-ext')
-module.exports = (fetchResponse, url) => new Promise(async (resolve, reject) => {
-
-  const _diskPath = 'tmp'
+module.exports = (fetchResponse, url, _diskPath = 'tmp') => new Promise(async (resolve, reject) => {
   const diskPath = path.resolve('.', _diskPath)
   if (!fs.existsSync(diskPath)) {
     shell.mkdir('-p', diskPath)

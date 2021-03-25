@@ -9,5 +9,5 @@ const getEpisodeFiles = require('./get-episode-files')
 
 
 module.exports = [
-  new CronJob('*/1 * * * *', getEpisodeFiles, null, true, 'Europe/Stockholm', null, true)
+  new CronJob('*/10 * * * *', getEpisodeFiles, null, true, 'Europe/Stockholm', null, true)
 ]

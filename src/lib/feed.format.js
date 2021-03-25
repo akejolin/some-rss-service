@@ -5,16 +5,27 @@
 */
 
 const get = require('lodash.get')
+const crypto = require('crypto')
 
-module.exports = (feed) => {
+
+module.exports = (feed, cache=[]) => {
 
   if (!Array.isArray(feed)) {
     throw new TypeError('Invalid feed param')
   }
 
- return feed.map((item) => ({
-   title: get(item, 'title'),
-   checksum: 'abc',
-   file: get(item, 'enclosure.url', ''),
- }))
+  const getChecksum = (url) => {
+    const needle = crypto.createHash('md5').update(url).digest("hex")
+    const result = cache.find(haystack => haystack.url === needle)
+    return result ? result.checksum : 'not available'
+  }
+
+  return feed.map((item) => {
+    const file = get(item, 'enclosure.url', '')
+    return {
+    title: get(item, 'title'),
+    checksum: getChecksum(file),
+    file,
+ }}
+ )
 }

@@ -6,8 +6,8 @@
 
 const fetch = require('node-fetch')
 
-module.exports = (url) => new Promise((resolve, reject) => {
-  fetch(url)
+module.exports = (url, options={}) => new Promise((resolve, reject) => {
+  fetch(url, options)
     .then(res => {
       if (res.ok) {
           return res

@@ -8,7 +8,7 @@ const fs = require('fs')
 const shell = require('shelljs')
 const log = require('../utils/system.log')
 
-module.exports = (file) => new Promise(async (resolve, reject) => {
+module.exports = (file, targetDir='./tmp') => new Promise(async (resolve, reject) => {
 
   if (!fs.existsSync(file)) {
     reject({
@@ -26,7 +26,7 @@ module.exports = (file) => new Promise(async (resolve, reject) => {
       })
       return
     }
-    shell.rm('-fr', './tmp')
+    
     resolve()
   })
 })
