@@ -9,7 +9,7 @@ const shell = require('shelljs')
 const log = require('../utils/system.log')
 const feedFetch = require('../lib/feed.fetch')
 const feedFormat = require('../lib/feed.format')
-const startCreateCheckSumProgress = require('../lib/checksum/progress')
+const startCreateCheckSumProgress = require('../cron/create-checksum')
 
 module.exports = async () => {
   log.info('cron job get-episode-files started')

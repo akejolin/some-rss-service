@@ -1,5 +1,5 @@
 /**
-* @desc App server.
+* @desc Cron server.
 * @return server - for supertests
 */
 
@@ -9,24 +9,18 @@ const shell = require('shelljs')
 const isEmpty = require('lodash.isempty')
 
 
-const port = process.env.PORT || 8000
+const port = process.env.PORT || 8001
 
 const app = new koa()
 
 const createCacheFile = require('./lib/create-cache-file')
 const cronJobs = require('./cron')
 const middlewares = require('./middlewares')
-const routes = require('./routes')
+
 
 if (!isEmpty(middlewares)) {
   middlewares.forEach((middleware) => {
     app.use(middleware)
-  })
-}
-
-if (!isEmpty(routes)) {
-  routes.forEach((route) => {
-    app.use(route.routes())
   })
 }
 
@@ -39,7 +33,7 @@ createCacheFile('cache', 'checksum-file-cache.json', [])
 
 
 
-// Clean up prevoius downloads
+// Clean up previous downloads
 shell.rm('-fr', 'tmp')
 
 

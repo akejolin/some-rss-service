@@ -6,13 +6,13 @@
 
 const fetch = require('node-fetch')
 
-const fileWrite = require('../../lib/file.write-to-disk')
-const fileDelete = require('../../lib/file.delete-from-disk')
-const generateCkeckSum = require('../checksum/generate')
-const saveCheckSum = require('../checksum/save')
-const loadChecksumCache = require('../checksum/load-cache')
-const isOutOfDate = require('../checksum/is-out-of-date')
-const log = require('../../utils/system.log')
+const fileWrite = require('../lib/file.write-to-disk')
+const fileDelete = require('../lib/file.delete-from-disk')
+const generateCkeckSum = require('../lib/checksum/generate')
+const saveCheckSum = require('../lib/checksum/save')
+const loadChecksumCache = require('../lib/checksum/load-cache')
+const isOutOfDate = require('../lib/checksum/is-out-of-date')
+const log = require('../utils/system.log')
 
 module.exports = (url) => new Promise(async (resolve, reject) => {
 

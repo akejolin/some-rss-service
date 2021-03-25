@@ -4,7 +4,7 @@
 */
 const CronJob = require('cron').CronJob
 
-const getEpisodeFiles = require('./get-episode-files')
+const getEpisodeFiles = require('./get-feed')
 
 
 

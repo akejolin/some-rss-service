@@ -6,7 +6,7 @@ describe('server', () => {
   let server = null
 
   beforeEach(() => {
-    server = require('../server')
+    server = require('../server.api')
   })
 
   afterEach(() => {
