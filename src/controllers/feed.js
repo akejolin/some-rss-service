@@ -40,7 +40,6 @@ module.exports = async (ctx) => {
     ctx.status = 200
     ctx.body = feed
   } catch(error) {
-    console.log(error)
     ctx.status = error.code
     ctx.body = {error}
   }

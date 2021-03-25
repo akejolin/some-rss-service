@@ -5,11 +5,11 @@
 jest.mock('node-fetch', () => require('fetch-mock-jest').sandbox())
 const fetchMock = require('node-fetch')
 
-jest.mock('../../lib/file.write-to-disk', () => () => Promise.reject({ data: {} }))
-jest.mock('../../lib/file.delete-from-disk', () => () => Promise.reject({ data: {} }))
-jest.mock('../../lib/file.get-info', () => () => Promise.reject({ data: {} }))
+jest.mock('../lib/file.write-to-disk', () => () => Promise.reject({ data: {} }))
+jest.mock('../lib/file.delete-from-disk', () => () => Promise.reject({ data: {} }))
+jest.mock('../lib/file.get-info', () => () => Promise.reject({ data: {} }))
 
-const controller = require('../../controllers/episode')
+const controller = require('../controllers/episode')
 
 describe('episode controller', () => {
   it('should respond with 400 when url param is missing', async () => {

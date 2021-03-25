@@ -1,5 +1,5 @@
 /**
-* @desc cron job.
+* @desc cron job entry.
 * @return function - function to be executed by cron
 */
 
@@ -19,45 +19,13 @@ module.exports = async () => {
   let feed = []
 
   // Get feed and parse
- 
-  
+
   try {
     feed = await feedFetch(url)
     feed = feed.map(item => ({file: get(item, 'enclosure.url', '')}))
   } catch(error) {
     throw new Error(`${error}`)
   }
-  /*
-
-  
-  const feed = [
-    {
-      title: 'KORT VERSION #460: Johan Croneman',
-      checksum: 'abc',
-      file: 'https://sphinx.acast.com/varvet/9721eae6-9ef5-4e68-bf43-8afab89989d2/media.mp3'
-    },
-    {
-      title: '#460: Johan Croneman',
-      checksum: 'abc',
-      file: 'https://sphinx.acast.com/varvet/-460-johancroneman/media.mp3'
-    },
-    {
-      title: 'KORT VERSION #459: Happy Jankell',
-      checksum: 'abc',
-      file: 'https://sphinx.acast.com/varvet/kortversion-459-happyjankell/media.mp3'
-    },
-    {
-      title: '#459: Happy Jankell',
-      checksum: 'abc',
-      file: 'https://sphinx.acast.com/varvet/-459-happyjankell/media.mp3'
-    },
-    {
-      title: 'KORT VERSION #458: Alexander Karim',
-      checksum: 'abc',
-      file: 'https://sphinx.acast.com/varvet/kortversion-458-alexanderkarim/media.mp3'
-    },
-  ]
-  */
 
 
   const action = (item) => new Promise((resolve, reject) => {
