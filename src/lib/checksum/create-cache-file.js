@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const shell = require('shelljs')
-const fileWrite = require('../utils/file.write')
+const fileWrite = require('../../utils/file.write')
 
 
 module.exports = (async (dir, fileName, data) => {

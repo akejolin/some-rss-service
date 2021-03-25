@@ -6,7 +6,7 @@ const Parser = require('rss-parser')
 
 jest.mock('rss-parser')
 
-const feedFetch = require('../lib/feed.fetch')
+const feedFetch = require('../../lib/feed.fetch')
 
 describe('feedFetch', () => {
 
@@ -41,7 +41,7 @@ describe('feedFetch', () => {
     })
 
     const result = await feedFetch(url)
-    
+
     expect(Array.isArray(result)).toEqual(true)
     expect(result[0].title).toEqual('A new episode')
   })

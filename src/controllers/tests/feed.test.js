@@ -2,9 +2,9 @@
 * @desc Test validation of parameter.
 */
 
-jest.mock('../lib/feed.fetch', () => () => Promise.reject({code: 404, message: 'not found'}))
+jest.mock('../../lib/feed.fetch', () => () => Promise.reject({code: 404, message: 'not found'}))
 
-const controller = require('../controllers/feed')
+const controller = require('../../controllers/feed')
 
 describe('feed controller', () => {
   it('should respond with 400 when url param is missing', async () => {

@@ -13,7 +13,7 @@ const port = process.env.PORT || 8001
 
 const app = new koa()
 
-const createCacheFile = require('./lib/create-cache-file')
+const createCacheFile = require('./lib/checksum/create-cache-file')
 const cronJobs = require('./cron')
 const middlewares = require('./middlewares')
 
